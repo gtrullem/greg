@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>show_author</title>
+</head>
+<body>
+{% if author %}
+<table>
+    <thead>
+        <tr>
+            <th>Key</th>
+            <th>Value</th>
+        </tr>
+    </thead>
+    {% for key, value in author.items() %}
+    <tr>
+        <td> {{ key }}</td><td>{{ value }} </td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+No author selected.
+{% endif %}
+</body>
+</html>

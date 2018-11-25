@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='app.css') }}">
+</head>
+<body>
+
+{% if name %}
+<h1> Hello {{name}}</h1>
+{% else %}
+<h1>Hello !</h1>
+{% endif %}
+
+
+<p><a href="./author/1">Author 1</a></p>
+<p><a href="./author/2">Author 2</a></p>
+<p><a href="./author/3">Author 3</a></p>
+
+
+<form action="/new_movie">
+    <input type="submit" value="Add new movie" />
+</form>
+
+<form action="/register">
+    <input type="submit" value="register" />
+</form>
+
+
+
+
+</body>
+</html>
