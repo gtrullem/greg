@@ -127,24 +127,21 @@ def __get_author_from_db(author_id):
 
 """---------------------------NOT WORKING-------------------------"""
 
-def __get_user_from_db(name):
-    sql = """SELECT password
-            FROM users
-            WHERE name = {}""".format(name)
-
+def __get_user_from_db(username, password):
+    """ authenticate user with username and password to the database """
     cursor = get_db().cursor()
-    cursor.execute(sql)
-
+    cursor.execute('SELECT COUNT(*) FROM users WHERE name = ? AND password = ?', username, password) 
     result = cursor.fetchone()
-    if not result:
-        """ signal an error in some way """
-        return None
+    
+    if result = 0:
+        msg = "Wrong username/password"
+    else:
+        if result > 1:                          # NOT MANDATORY IF CONSTRAINT IN DB
+            msg = "Bug in the application"      # NOT MANDATORY IF CONSTRAINT IN DB
+        else:                                   # NOT MANDATORY IF CONSTRAINT IN DB
+            msg = None
 
-    username = {}  # make adictionary
-    username["name"] = name
-    username["password"] = result
-
-    return username
+    return msn
 
 """----------------------------NOT IN USE----------------------------------------"""
 
@@ -159,6 +156,7 @@ def save_user(db,diction):
     print(query)
 
     cursor.execute(query)
+    # IF CONSTRAINT IN DB, CHECK IF NOT ERROR OCCURED DURING THE QUERY'S EXECUTION 
 
     # user_id = cursor.lastrowid
     cursor.close()
